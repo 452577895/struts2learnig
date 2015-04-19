@@ -12,5 +12,11 @@
 			<action name="deleteUser" class="struts2CURD.UserDao" method="deleteUser">
 				<result name="deleteUser-success" type="redirect">/showUser.jsp</result>
 			</action>
+			<action name="addUser" class="struts2CURD.UserDao" method="addUser">
+				<result name="addUser-success" type="redirect">/showUser.jsp</result>
+			</action>
+			<action name="toaddUser">
+				<result>/addUser.jsp</result>
+			</action>
 		</package>
 </struts>

@@ -27,6 +27,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <s:debug></s:debug>
     <table border="1px">
     	<tr>
+    		<td>用户ID</td>
     		<td>用户名</td>
     		<td>密码</td>
     		<td>年龄</td>
@@ -36,6 +37,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     	</tr>
     	<s:iterator value="#session.allUser">
     		<tr>
+    		<td><s:property value="userId"/></td>
     		<td><s:property value="username"/></td>
     		<td><s:property value="password"/></td>
     		<td><s:property value="age"/></td>

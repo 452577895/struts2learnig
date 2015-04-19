@@ -9,7 +9,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'index.jsp' starting page</title>
+    <title>My JSP 'addUser.jsp' starting page</title>
+    
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -18,10 +19,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+
   </head>
   
   <body>
-    <a href="showUser">显示所有用户信息</a><br/>
-    <a href="toaddUser">增加用户</a>
+   <form action="addUser" method="post">
+   		用户名：<input type="text" name="username"/><br/>
+   		   密&nbsp 码：<input type="text" name="password"/><br/>
+   		   年&nbsp 龄：<input type="text" name="age"/><br/>
+   		   性&nbsp 别：<input type="text" name="sex"/><br/>
+   		<input  type="submit" value="提交"/>
+   </form>
   </body>
 </html>
