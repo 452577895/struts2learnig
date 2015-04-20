@@ -6,6 +6,7 @@
 <struts>
 <constant name="struts.action.extension" value="action,do,"></constant>
 		<package name="user" extends="struts-default">
+		<default-interceptor-ref name="paramsPrepareParamsStack"></default-interceptor-ref>
 			<action name="*" class="struts2CURD.UserDao" method="{1}">
 				<result name="{1}-success">/showUser.jsp</result>
 			</action>
@@ -17,6 +18,12 @@
 			</action>
 			<action name="toaddUser">
 				<result>/addUser.jsp</result>
+			</action>
+			<action name="editUser" class="struts2CURD.UserDao" method="edit">
+				<result name="edit-success">/editUser.jsp</result>
+			</action>
+			<action name="updateUser" class="struts2CURD.UserDao" method="update">
+				<result name="update-success" type="redirect">/showUser.jsp</result>
 			</action>
 		</package>
 </struts>

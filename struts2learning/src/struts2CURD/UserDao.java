@@ -20,7 +20,14 @@ public class UserDao implements ServletRequestAware,ModelDriven<User>{
 	private HttpServletRequest request;
 	private static List<User> allUser = new ArrayList<User>();
 	private User user;
+	private String userId;
 	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	static {
 		allUser.add(new User("1001","201250080325","123456", 18, "男"));
 		allUser.add(new User("1002","201250080326","weq22", 19, "男"));
@@ -67,13 +74,59 @@ public class UserDao implements ServletRequestAware,ModelDriven<User>{
 		session.setAttribute("allUser", list);
 		return "addUser-success";
 	}
+	public String edit(){
+		/*HttpSession session = request.getSession();
+		List<User> list = (List<User>) session.getAttribute("allUser");
+		User tuser = new User();
+		for (User temp : list) {
+			if(temp.getUserId().equals(user.getUserId())){
+				tuser = temp;
+			}
+		}
+		//user 在值栈栈顶
+		user.setUsername(tuser.getUsername());
+		user.setPassword(tuser.getPassword());
+		user.setAge(tuser.getAge());
+		user.setSex(tuser.getSex());*/
+		
+		return "edit-success";
+	}
+	public String update(){
+		HttpSession session = request.getSession();
+		List<User> list = (List<User>) session.getAttribute("allUser");
+		List<User> tlist = new ArrayList<User>();
+		for (User temp : list) {
+			if(temp.getUserId().equals(user.getUserId())){
+				tlist.add(temp);
+			}
+			
+		}
+		list.removeAll(tlist);
+		list.add(user);
+		session.setAttribute("allUser", list);
+		return "update-success";
+	}
 	@Override
 	public void setServletRequest(HttpServletRequest request) {
 		this.request = request;
 	}
 	@Override
 	public User getModel() {
+		if(userId == null){
 		user = new User();
+		}else{
+			HttpSession session = request.getSession();
+			List<User> list = (List<User>) session.getAttribute("allUser");
+			int index  = 0;
+			for (User temp : list) {
+				if(temp.getUserId().equals(userId)){
+					index = list.indexOf(temp);
+					System.out.println(index);
+				}
+			}
+			user = list.get(index);
+		}
 		return user;
 	}
+	
 }

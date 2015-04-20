@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'showUser.jsp' starting page</title>
+    <title>My JSP 'edit.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -25,27 +25,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   <s:debug></s:debug>
-    <table border="1px">
-    	<tr>
-    		<td>用户ID</td>
-    		<td>用户名</td>
-    		<td>密码</td>
-    		<td>年龄</td>
-    		<td>性别</td>
-    		<td>修改</td>
-    		<td>删除</td>
-    	</tr>
-    	<s:iterator value="#session.allUser">
-    		<tr>
-    		<td><s:property value="userId"/></td>
-    		<td><s:property value="username"/></td>
-    		<td><s:property value="password"/></td>
-    		<td><s:property value="age"/></td>
-    		<td><s:property value="sex"/></td>
-    		<td><a href="editUser?userId=${userId }">修改</a></td>
-    		<td><a href="deleteUser?userId=${userId }">删除</a></td>
-    		</tr>
-    	</s:iterator>
-    </table>
+     <form action="updateUser" method="post">
+     	<input type="hidden" name="userId" value="${userId }"/>
+   		用户名：<input type="text" name="username" value="${username }"/><br/>
+   		   密&nbsp 码：<input type="text" name="password" value="${password}"/><br/>
+   		   年&nbsp 龄：<input type="text" name="age" value="${age }"/><br/>
+   		   性&nbsp 别：<input type="text" name="sex" value="${sex }"/><br/>
+   		<input  type="submit" value="修改"/>
+   </form>
   </body>
 </html>
